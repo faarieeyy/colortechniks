@@ -27,14 +27,14 @@ export default function Preloader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-background transition-opacity duration-700 ease-in-out ${
+      className={`fixed inset-0 z-[100] flex items-center justify-center bg-black transition-opacity duration-700 ease-in-out ${
         fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
       <div className={`transition-all duration-1000 transform ${fadeOut ? "scale-110 opacity-0" : "scale-100 opacity-100"}`}>
         <img
-          src="/logo.png"
-          alt="Colortechnik Logo"
+          src="/preloader-logo.png"
+          alt="Colortechnik Loading Logo"
           className="w-48 md:w-64 h-auto animate-pulse drop-shadow-2xl"
         />
       </div>

@@ -43,13 +43,17 @@ export default function Navbar() {
   return (
     <nav
       id="top-nav"
-      className={`fixed top-0 w-full z-50 transition-all duration-500 bg-white ${
-        scrolled ? "py-2 shadow-sm" : "py-3"
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        scrolled ? "bg-white/90 backdrop-blur-md py-2 shadow-sm text-on-surface" : "bg-transparent py-6 text-white"
       }`}
     >
       <div className="flex justify-between items-center px-grid-margin max-w-[1440px] mx-auto">
         <Link href="/" className="flex items-center z-50">
-          <img src="/logo.png" alt="Colortechnik Logo" className="w-24 md:w-32 h-auto object-contain" />
+          <img 
+            src={scrolled ? "/logo.png" : "/preloader-logo.png"} 
+            alt="Colortechnik Logo" 
+            className="w-24 md:w-32 h-auto object-contain transition-opacity duration-300" 
+          />
         </Link>
         
         {/* Desktop Menu */}
@@ -60,21 +64,25 @@ export default function Navbar() {
               href={link.href}
               className={`font-label-md text-label-md pb-1 transition-colors duration-300 ${
                 pathname === link.href
-                  ? "text-primary border-b-2 border-tertiary-container"
-                  : "text-on-surface-variant hover:text-primary"
+                  ? (scrolled ? "text-primary border-b-2 border-primary" : "text-white border-b-2 border-white")
+                  : (scrolled ? "text-on-surface-variant hover:text-primary" : "text-white/80 hover:text-white")
               }`}
             >
               {link.name}
             </Link>
           ))}
         </div>
-        <button className="hidden md:block bg-primary text-on-primary px-8 py-3 rounded-full font-label-md text-label-md hover:bg-secondary transition-all duration-300 transform scale-95 hover:scale-100 active:scale-95 uppercase">
+        <button 
+          className={`hidden md:block px-8 py-3 rounded-full font-label-md text-label-md transition-all duration-300 transform scale-95 hover:scale-100 active:scale-95 uppercase ${
+            scrolled ? "bg-primary text-on-primary hover:bg-secondary" : "bg-white text-primary hover:bg-white/90"
+          }`}
+        >
           Consultation
         </button>
 
         {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden z-50 p-2 text-primary"
+          className="md:hidden z-50 p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle mobile menu"
         >
