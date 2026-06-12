@@ -16,14 +16,26 @@ export default function Page() {
     }, { threshold: 0.1 });
     reveals.forEach(r => observer.observe(r));
 
+    let ticking = false;
+    let parallaxElements: NodeListOf<Element> | null = null;
+
     const handleScroll = () => {
-      const scrolled = window.scrollY;
-      document.querySelectorAll('.parallax-bg').forEach((el) => {
-        const speed = el.getAttribute('data-speed') || "0.5";
-        (el as HTMLElement).style.setProperty('--parallax-y', `${scrolled * Number(speed)}px`);
-      });
+      if (!parallaxElements) {
+        parallaxElements = document.querySelectorAll('.parallax-bg');
+      }
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.scrollY;
+          parallaxElements!.forEach((el) => {
+            const speed = el.getAttribute('data-speed') || "0.5";
+            (el as HTMLElement).style.setProperty('--parallax-y', `${scrolled * Number(speed)}px`);
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial call
 
     return () => {
@@ -38,7 +50,7 @@ export default function Page() {
       <div className="fixed inset-0 -z-10 pointer-events-none">
         <picture>
           <source media="(max-width: 768px)" srcSet="/bg-mobile.png" />
-          <img src="/bg-desktop.png" alt="Lighting Background" className="w-full h-full object-cover" />
+          <img src="/bg-desktop.png" alt="Lighting Background" className="w-full h-full object-cover" loading="lazy" decoding="async" />
         </picture>
         <div className="absolute inset-0 bg-black/80"></div>
       </div>
@@ -48,7 +60,7 @@ export default function Page() {
 {/*  Hero Section  */}
 <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
 <div className="absolute inset-0 z-0">
-<img className="w-full h-full object-cover parallax-bg" alt="Hero Background" src="/hero-bg.jpg"/>
+<img className="w-full h-full object-cover parallax-bg" alt="Hero Background" src="/hero-bg.jpg" fetchpriority="high" decoding="async" />
 </div>
 <div className="relative z-10 text-center px-grid-margin max-w-7xl">
 <h1 
@@ -88,7 +100,7 @@ export default function Page() {
 {/*  Row 1: Residential  */}
 <div className="grid md:grid-cols-12 gap-grid-gutter items-center">
 <div className="md:col-span-7 reveal">
-<img className="w-full aspect-[4/3] object-cover rounded-lg shadow-[0_0_50px_rgba(255,255,255,0.6)]" data-alt="A luxury contemporary living room at dusk, featuring layered cove lighting and recessed spotlights that emphasize the minimalist furniture and natural wood textures. Large floor-to-ceiling windows reflect the warm interior glow against a blue hour sky. The lighting design creates a cozy yet expansive residential atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwKeIADZNppg3k--dTTC8AdlGFB6mY6rMRLeV8yFnxgwlnohiITOcc0ixXLBBg5dlSZCLP5_5xeKq7Wx3gfaXMkYzMG24dLrS7KCj7RUsU1DehewH8AIDPoWI72O4BOW95ilWouLvwD0gX0ROuTsVJszPeQLEvEcsf1_LKO6fcAKPBftZQrHiLeurKtC_1kFeQS45VUuqi4TRrg8Px3bW5ek9uthiOwIKhvxA2TS1d8O4sdQ1OAjXQE8BTvh0oFRvLTKoaUsC1esE"/>
+<img loading="lazy" decoding="async" className="w-full aspect-[4/3] object-cover rounded-lg shadow-[0_0_50px_rgba(255,255,255,0.6)]" data-alt="A luxury contemporary living room at dusk, featuring layered cove lighting and recessed spotlights that emphasize the minimalist furniture and natural wood textures. Large floor-to-ceiling windows reflect the warm interior glow against a blue hour sky. The lighting design creates a cozy yet expansive residential atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwKeIADZNppg3k--dTTC8AdlGFB6mY6rMRLeV8yFnxgwlnohiITOcc0ixXLBBg5dlSZCLP5_5xeKq7Wx3gfaXMkYzMG24dLrS7KCj7RUsU1DehewH8AIDPoWI72O4BOW95ilWouLvwD0gX0ROuTsVJszPeQLEvEcsf1_LKO6fcAKPBftZQrHiLeurKtC_1kFeQS45VUuqi4TRrg8Px3bW5ek9uthiOwIKhvxA2TS1d8O4sdQ1OAjXQE8BTvh0oFRvLTKoaUsC1esE"/>
 </div>
 <div className="md:col-span-4 md:col-start-9 reveal">
 <span className="font-label-md text-label-md text-[#ffdcbe] uppercase tracking-widest mb-4 block">01 / Residential</span>
@@ -106,13 +118,13 @@ export default function Page() {
 <button className="border-b-2 border-white pb-1 font-label-md text-label-md uppercase hover:text-secondary hover:border-secondary transition-colors">View Commercial</button>
 </div>
 <div className="md:col-span-7 md:col-start-6 reveal order-1 md:order-2">
-<img className="w-full aspect-[4/3] object-cover rounded-lg shadow-[0_0_50px_rgba(255,255,255,0.6)]" data-alt="A modern open-plan office space featuring sleek linear pendant lights and integrated ceiling wash lighting. The architectural environment is crisp and professional, with cool white light fostering a sense of focus and energy. High-end materials like brushed steel and glass reflect the precise technical lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJFHCkb-chTcogM96sf2NNajpv9vT1Ej5th6Sa7hiF30796NrBfZs5nW_2bWH9SQiaXe0ajfnSQDkxwohpiYa_SmkwdX2987paTr6ADMzCFbDsdwF0feqdVBF_FQPuLCTxmGo0Kx7y9ayGdqp-mE6KljFsAAMQ4rq_nw6Wd3N9LxHtUE-klxedMe6hkFO85x3GSFzNgpGSi1BQy90d3m15k4vKpFL3MJGKw0b5wrN2NNp5QFw9B1ZfNdi7atj9QrIudk47ay57CUk"/>
+<img loading="lazy" decoding="async" className="w-full aspect-[4/3] object-cover rounded-lg shadow-[0_0_50px_rgba(255,255,255,0.6)]" data-alt="A modern open-plan office space featuring sleek linear pendant lights and integrated ceiling wash lighting. The architectural environment is crisp and professional, with cool white light fostering a sense of focus and energy. High-end materials like brushed steel and glass reflect the precise technical lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJFHCkb-chTcogM96sf2NNajpv9vT1Ej5th6Sa7hiF30796NrBfZs5nW_2bWH9SQiaXe0ajfnSQDkxwohpiYa_SmkwdX2987paTr6ADMzCFbDsdwF0feqdVBF_FQPuLCTxmGo0Kx7y9ayGdqp-mE6KljFsAAMQ4rq_nw6Wd3N9LxHtUE-klxedMe6hkFO85x3GSFzNgpGSi1BQy90d3m15k4vKpFL3MJGKw0b5wrN2NNp5QFw9B1ZfNdi7atj9QrIudk47ay57CUk"/>
 </div>
 </div>
 {/*  Row 3: Hospitality  */}
 <div className="grid md:grid-cols-12 gap-grid-gutter items-center">
 <div className="md:col-span-7 reveal">
-<img className="w-full aspect-[4/3] object-cover rounded-lg shadow-[0_0_50px_rgba(255,255,255,0.6)]" data-alt="The lobby of a boutique five-star hotel at night, illuminated by dramatic sculptural lighting fixtures and warm amber accent lights tucked into architectural niches. The environment is rich and welcoming, using high-contrast lighting to create zones of intimacy and grandeur. Dark velvets and polished marbles catch the golden glints of light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-AM3z7CrcRrq4oGShRabzyAbuKph_yrmMSdZwRgzmx2IOmyafdXZa48bhEqDFVXolTSRx3iXbiejqTZg0FJx2TUF7Q_kgQFEJ6v7K6f04sKR7wlTSj6hAOfkyEM6lyjeDVQLTOx6waBwqhpyaGgASIx6N8Z9Hti3PbnQlVschx6HTW7p2XeTfvTJKbIlH7JcknY1D3Go0m252rTQV5FgesGXaRDzFPBQSAQF8PyaqjsKq9D_HVu5TXEVaMP7VP1qQo5k3wxBk4iA"/>
+<img loading="lazy" decoding="async" className="w-full aspect-[4/3] object-cover rounded-lg shadow-[0_0_50px_rgba(255,255,255,0.6)]" data-alt="The lobby of a boutique five-star hotel at night, illuminated by dramatic sculptural lighting fixtures and warm amber accent lights tucked into architectural niches. The environment is rich and welcoming, using high-contrast lighting to create zones of intimacy and grandeur. Dark velvets and polished marbles catch the golden glints of light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-AM3z7CrcRrq4oGShRabzyAbuKph_yrmMSdZwRgzmx2IOmyafdXZa48bhEqDFVXolTSRx3iXbiejqTZg0FJx2TUF7Q_kgQFEJ6v7K6f04sKR7wlTSj6hAOfkyEM6lyjeDVQLTOx6waBwqhpyaGgASIx6N8Z9Hti3PbnQlVschx6HTW7p2XeTfvTJKbIlH7JcknY1D3Go0m252rTQV5FgesGXaRDzFPBQSAQF8PyaqjsKq9D_HVu5TXEVaMP7VP1qQo5k3wxBk4iA"/>
 </div>
 <div className="md:col-span-4 md:col-start-9 reveal">
 <span className="font-label-md text-label-md text-[#ffdcbe] uppercase tracking-widest mb-4 block">03 / Hospitality</span>
@@ -137,7 +149,7 @@ export default function Page() {
 </div>
 </div>
 <div className="relative w-full aspect-video rounded-lg overflow-hidden reveal shadow-[0_0_50px_rgba(255,255,255,0.6)]">
-<img className="w-full h-full object-cover" data-alt="A futuristic glass and steel pavilion at night, glowing with a complex pattern of white and cyan lights that seem to move across its surface. The structure is set against a dark urban backdrop, making the light installation the focal point of the environment. Reflections on the surrounding water add a layer of symmetry and magic to the architectural scene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN88FKC0XDDBlv_3JaqbLPfDdgY0HLy32iXQTpOqshfopGNaZa-6lrn__v0Eob3USNz9fuS9lWaqdAM1ZmZUZ93_9GGEx6JELJZyq-LzsPBM4zqPyvuKCX10YkQqy0kKwEF8ctyrHLPtsxW2aoGq5aml7XeZMtDA8op5oXAE9OhHDbMQW1H3MvxucSyIm3WBEAX9yyA0cvIzPmXVYFmhEdxylcAbqiXcK_lat0L-kGyY_TblI3VSdQkI9ecpa6d9tgP8ItFAvhsSU"/>
+<img loading="lazy" decoding="async" className="w-full h-full object-cover" data-alt="A futuristic glass and steel pavilion at night, glowing with a complex pattern of white and cyan lights that seem to move across its surface. The structure is set against a dark urban backdrop, making the light installation the focal point of the environment. Reflections on the surrounding water add a layer of symmetry and magic to the architectural scene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN88FKC0XDDBlv_3JaqbLPfDdgY0HLy32iXQTpOqshfopGNaZa-6lrn__v0Eob3USNz9fuS9lWaqdAM1ZmZUZ93_9GGEx6JELJZyq-LzsPBM4zqPyvuKCX10YkQqy0kKwEF8ctyrHLPtsxW2aoGq5aml7XeZMtDA8op5oXAE9OhHDbMQW1H3MvxucSyIm3WBEAX9yyA0cvIzPmXVYFmhEdxylcAbqiXcK_lat0L-kGyY_TblI3VSdQkI9ecpa6d9tgP8ItFAvhsSU"/>
 </div>
 </div>
 </section>
@@ -169,30 +181,30 @@ export default function Page() {
 <div className="grid grid-cols-2 md:grid-cols-12 gap-grid-gutter auto-rows-[200px] md:auto-rows-[300px]">
 {/*  Large  */}
 <div className="col-span-2 md:col-span-8 md:row-span-2 reveal group overflow-hidden rounded-lg relative shadow-[0_0_50px_rgba(255,255,255,0.6)]">
-<img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up detail of architectural lighting washing a textured concrete wall, creating deep shadows and high-contrast highlights. The light is a crisp neutral white, emphasizing the brutalist material's honesty. The composition is artistic and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtrb_3mVrTC1LmWxEbZ_CsT2LHpYWUhxlmPta9O9iUKBCnLRkpMIu3BHFtMrhtd1c2YOzUjpZrS779Nb1_buAKdK_nMYSRfHdToRZL4dbQlheaHRPt_9dVtCFithg1InZPyV-Xy6I_aH7Pn8ObaFEuHpPPY7MKBH8bpFN3SRMHbhuNTCmpNriyCbpgB8qfGisT9aWvl3ynYHJutNGyxFRF-GR4-3yolRNt-5-1SBdTWij80GK14awWro-igQp3G0B-vtWKFZ61ZWk"/>
+<img loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up detail of architectural lighting washing a textured concrete wall, creating deep shadows and high-contrast highlights. The light is a crisp neutral white, emphasizing the brutalist material's honesty. The composition is artistic and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtrb_3mVrTC1LmWxEbZ_CsT2LHpYWUhxlmPta9O9iUKBCnLRkpMIu3BHFtMrhtd1c2YOzUjpZrS779Nb1_buAKdK_nMYSRfHdToRZL4dbQlheaHRPt_9dVtCFithg1InZPyV-Xy6I_aH7Pn8ObaFEuHpPPY7MKBH8bpFN3SRMHbhuNTCmpNriyCbpgB8qfGisT9aWvl3ynYHJutNGyxFRF-GR4-3yolRNt-5-1SBdTWij80GK14awWro-igQp3G0B-vtWKFZ61ZWk"/>
 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
 <span className="text-white font-label-md text-label-md uppercase">Materiality &amp; Radiance</span>
 </div>
 </div>
 {/*  Medium 1  */}
 <div className="col-span-1 md:col-span-4 md:row-span-1 reveal group overflow-hidden rounded-lg relative shadow-[0_0_50px_rgba(255,255,255,0.6)]">
-<img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An upscale restaurant terrace at sunset with subtle floor-recessed accent lights and hanging glowing orbs. The lighting creates a romantic, high-end atmosphere that blends perfectly with the natural fading light of the sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwR6e6X2gg1Aent-qhzZkw-2LgvLC9EfGev_0T9eNQddll-ueuTLVer37M6RKSbfePy2p8rmMayDcnY1wDOMoujqLizj5Qt5EGZ3gVC115SESn2FDLVh1SuJZhUPMycPRmMaNseLhnGZejuHOmPz9vQUTYnKIEpA4R5NARaZfcI_lFB1zWORQwLAbEkvFl19NzhWp4gILPOmCBay2qG4OlpUW7OxgD6tmqm-jyiLbEHrutghBjMLeP0__Ko8DIORaYbbc53TBdCHg"/>
+<img loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An upscale restaurant terrace at sunset with subtle floor-recessed accent lights and hanging glowing orbs. The lighting creates a romantic, high-end atmosphere that blends perfectly with the natural fading light of the sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwR6e6X2gg1Aent-qhzZkw-2LgvLC9EfGev_0T9eNQddll-ueuTLVer37M6RKSbfePy2p8rmMayDcnY1wDOMoujqLizj5Qt5EGZ3gVC115SESn2FDLVh1SuJZhUPMycPRmMaNseLhnGZejuHOmPz9vQUTYnKIEpA4R5NARaZfcI_lFB1zWORQwLAbEkvFl19NzhWp4gILPOmCBay2qG4OlpUW7OxgD6tmqm-jyiLbEHrutghBjMLeP0__Ko8DIORaYbbc53TBdCHg"/>
 </div>
 {/*  Medium 2  */}
 <div className="col-span-1 md:col-span-4 md:row-span-1 reveal group overflow-hidden rounded-lg relative shadow-[0_0_50px_rgba(255,255,255,0.6)]">
-<img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist interior corridor featuring a rhythmic series of vertical light strips that create a sense of movement and direction. The architecture is clean and monochromatic, allowing the light to define the space's personality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ7a_x0C1VYIL6A8zvWfW1a1fNNiomhPRLb1IepLe83yYC0ISK9JKoMkB-an1zYPTWGAtW9fHvFH3Ihd2G6Bhla1vkWylU7LJUF3BIWedLmSTSPT9Cdp-EYbBvRK144uRJTyntPRfXNFOEM1VXsl185VLPxm_Y9BO89RIZB11DC9JHf1hytOARehCIs2YZQAd6sAkyYaJea_332UHTUjjbvr1WDFZHetR9nsWXfbDDH4nk5VEzHpGSarvvuYPU0kJBV2WAJmn2oY8"/>
+<img loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist interior corridor featuring a rhythmic series of vertical light strips that create a sense of movement and direction. The architecture is clean and monochromatic, allowing the light to define the space's personality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ7a_x0C1VYIL6A8zvWfW1a1fNNiomhPRLb1IepLe83yYC0ISK9JKoMkB-an1zYPTWGAtW9fHvFH3Ihd2G6Bhla1vkWylU7LJUF3BIWedLmSTSPT9Cdp-EYbBvRK144uRJTyntPRfXNFOEM1VXsl185VLPxm_Y9BO89RIZB11DC9JHf1hytOARehCIs2YZQAd6sAkyYaJea_332UHTUjjbvr1WDFZHetR9nsWXfbDDH4nk5VEzHpGSarvvuYPU0kJBV2WAJmn2oY8"/>
 </div>
 {/*  Small 1  */}
 <div className="col-span-1 md:col-span-3 reveal group overflow-hidden rounded-lg shadow-[0_0_50px_rgba(255,255,255,0.6)]">
-<img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Detail of a modern task light in a designer home office. The light pool is sharp and focused on a set of architectural blueprints, highlighting the precision and intentionality of professional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABLe6D_DXvMY_7SSXvLMqlaIqS37XhAssEOmSpTtDYIvGknhV5NIStlvKNH1kjs9yFjW5-7qkOCzwnjBMhgPLL6wSytF-FzI-PXgXs1rXWRiJHi4IH9Hk6LbaAZpOYQcGIjbxbRCbLy9oksUBNB4-eep8cGSWZ9VJdiQ9oGPXgqCLy_4OKrUpOfvMp8zJdTCiql4tg0hz2mVSXdWHAOm8jmn0fC3J61mkQoEQpxUVw3s4U13ARojSlrncohQt3VoEOP2yh-Dkn0yI"/>
+<img loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Detail of a modern task light in a designer home office. The light pool is sharp and focused on a set of architectural blueprints, highlighting the precision and intentionality of professional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABLe6D_DXvMY_7SSXvLMqlaIqS37XhAssEOmSpTtDYIvGknhV5NIStlvKNH1kjs9yFjW5-7qkOCzwnjBMhgPLL6wSytF-FzI-PXgXs1rXWRiJHi4IH9Hk6LbaAZpOYQcGIjbxbRCbLy9oksUBNB4-eep8cGSWZ9VJdiQ9oGPXgqCLy_4OKrUpOfvMp8zJdTCiql4tg0hz2mVSXdWHAOm8jmn0fC3J61mkQoEQpxUVw3s4U13ARojSlrncohQt3VoEOP2yh-Dkn0yI"/>
 </div>
 {/*  Small 2  */}
 <div className="col-span-1 md:col-span-6 reveal group overflow-hidden rounded-lg shadow-[0_0_50px_rgba(255,255,255,0.6)]">
-<img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Night view of a contemporary landscape project featuring illuminated trees and hidden path lighting. The light is soft and organic, enhancing the natural beauty of the garden without overwhelming it with glare." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_GlTmzYPQ_7H1Y1XOR_FBkkyTdipRB8CnAx2Wjp-0fwTWM-UdFWOl4w7Ua-8nc9Eip0OP8xs-x-sYyJoI-iQw_lfEfT0V_O45aKacJR0oBxy8WNWkQpyHLY1tVa-MM8lMJAMbVKSlYWz6vKr3GP2CWCzSiDr-Z8B-HG1-vmadPqfwl2o5PS4BiKxElrLSz_Q5G3S7rw63q7Bugwj9g-KdfwuPj1pggRSu_ZrW_NogKQOibj1fk8oW2Reeh92XUAkqKqFrYp5qyAM"/>
+<img loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Night view of a contemporary landscape project featuring illuminated trees and hidden path lighting. The light is soft and organic, enhancing the natural beauty of the garden without overwhelming it with glare." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_GlTmzYPQ_7H1Y1XOR_FBkkyTdipRB8CnAx2Wjp-0fwTWM-UdFWOl4w7Ua-8nc9Eip0OP8xs-x-sYyJoI-iQw_lfEfT0V_O45aKacJR0oBxy8WNWkQpyHLY1tVa-MM8lMJAMbVKSlYWz6vKr3GP2CWCzSiDr-Z8B-HG1-vmadPqfwl2o5PS4BiKxElrLSz_Q5G3S7rw63q7Bugwj9g-KdfwuPj1pggRSu_ZrW_NogKQOibj1fk8oW2Reeh92XUAkqKqFrYp5qyAM"/>
 </div>
 {/*  Small 3  */}
 <div className="col-span-2 md:col-span-3 reveal group overflow-hidden rounded-lg shadow-[0_0_50px_rgba(255,255,255,0.6)]">
-<img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An abstract shot of light refracting through a glass fixture, creating a spectrum of soft colors on a white wall. The image is ethereal and poetic, representing the artistic side of lighting design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFo29XZ--cqRQtNn5viIE7txXc-VNswzpBfDaUzUxMBv9gfRDVmk2lxVVMEcy7j4N1LOUQuBv3vjPrTXIEThu2ZF1Eazodq2sZomoh-24GOmzj3jtXYCZKBMRmq722uVmWe1RlHn-aufsnwA9sbcE03tY2eu5x8fYX2LvPbrhL_ekUfGTmg8pfi49WgHlr_ybxoHztF7FSvYFBM2GR7gcc8WFuSzZEQlmgUoLRp081IQuqRNqSvvvKyP1ZRUy7SQsmjE2c8VC5_5o"/>
+<img loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An abstract shot of light refracting through a glass fixture, creating a spectrum of soft colors on a white wall. The image is ethereal and poetic, representing the artistic side of lighting design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFo29XZ--cqRQtNn5viIE7txXc-VNswzpBfDaUzUxMBv9gfRDVmk2lxVVMEcy7j4N1LOUQuBv3vjPrTXIEThu2ZF1Eazodq2sZomoh-24GOmzj3jtXYCZKBMRmq722uVmWe1RlHn-aufsnwA9sbcE03tY2eu5x8fYX2LvPbrhL_ekUfGTmg8pfi49WgHlr_ybxoHztF7FSvYFBM2GR7gcc8WFuSzZEQlmgUoLRp081IQuqRNqSvvvKyP1ZRUy7SQsmjE2c8VC5_5o"/>
 </div>
 </div>
 </div>

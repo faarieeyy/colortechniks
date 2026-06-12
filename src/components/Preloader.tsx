@@ -7,15 +7,15 @@ export default function Preloader() {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    // Start fade out after 2 seconds
+    // Start fade out quickly to improve perceived performance
     const timer = setTimeout(() => {
       setFadeOut(true);
-    }, 2000);
+    }, 300);
 
     // Remove from DOM after fade out completes
     const removeTimer = setTimeout(() => {
       setLoading(false);
-    }, 2800);
+    }, 1000);
 
     return () => {
       clearTimeout(timer);
