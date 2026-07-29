@@ -61,7 +61,7 @@ export default function Page() {
 {/*  Hero Section  */}
 <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
 <div className="absolute inset-0 z-0">
-<img className="w-full h-full object-cover parallax-bg opacity-80" alt="Hero Background" src="/hero-bg-2.jpg" fetchPriority="high" decoding="async" />
+<img className="w-full h-full object-cover parallax-bg" alt="Hero Background" src="/hero-bg-new.jpg" fetchPriority="high" decoding="async" />
 </div>
 <div className="relative z-10 text-center px-grid-margin max-w-7xl">
 <h1 
@@ -212,35 +212,7 @@ export default function Page() {
 </div>
 </div>
 </section>
-{/*  Testimonials  */}
-<section className="relative z-10 py-section-gap text-white">
-<div className="max-w-[1440px] mx-auto px-grid-margin">
-<div className="grid md:grid-cols-2 gap-section-gap">
-<div className="reveal">
-<span className="material-symbols-outlined text-[#ffdcbe] text-6xl mb-8">format_quote</span>
-<h3 className="font-headline-xl text-headline-xl mb-12 italic font-normal">&quot;Colortechnik doesn&apos;t just supply fixtures; they provide an architectural language that completes our vision. Their technical rigor is unmatched.&quot;</h3>
-<div className="flex items-center gap-4">
-<div className="w-12 h-px bg-[#ffdcbe]"></div>
-<div>
-<p className="font-subheading-lg uppercase">Marcus Vane</p>
-<p className="font-label-md text-label-md text-white/80">Principal Architect, Studio Vane</p>
-</div>
-</div>
-</div>
-<div className="reveal" style={{"transitionDelay": "200ms", }}>
-<span className="material-symbols-outlined text-[#ffdcbe] text-6xl mb-8">format_quote</span>
-<h3 className="font-headline-xl text-headline-xl mb-12 italic font-normal">&quot;The precision of their lighting layouts has redefined how our clients experience their space. Every lumen is intentional.&quot;</h3>
-<div className="flex items-center gap-4">
-<div className="w-12 h-px bg-[#ffdcbe]"></div>
-<div>
-<p className="font-subheading-lg uppercase">Elena Rossi</p>
-<p className="font-label-md text-label-md text-white/80">Creative Director, Aura Design</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+
 {/*  Final CTA  */}
 <section className="bg-[#DCCFC1] text-primary py-section-gap text-center relative overflow-hidden">
 <div className="absolute inset-0 opacity-20 mix-blend-multiply filter invert pointer-events-none" style={{ backgroundImage: "url('/scribbles-bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}></div>

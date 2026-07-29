@@ -42,24 +42,21 @@ export default function Page() {
 </header>
 <main>
 {/*  Section 1: Hero  */}
-<section className="min-h-screen flex flex-col justify-end pt-32 pb-section-gap overflow-hidden">
-<div className="px-grid-margin max-w-[1440px] mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-grid-gutter relative">
-<div className="md:col-span-8 z-10">
-<h1 className="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight text-primary mb-12">
+<section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+<div className="absolute inset-0 z-0">
+<img className="w-full h-full object-cover parallax-bg" alt="About Hero Background" src="/about-hero-bg.jpg" fetchPriority="high" decoding="async" />
+</div>
+<div className="relative z-10 text-center px-grid-margin max-w-7xl pt-32">
+<h1 
+  className="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight text-white mb-12 hero-reveal"
+  style={{ textShadow: "0 0 40px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.7)" }}
+>
                         THE SCIENCE OF LIGHT.<br/>
 <span className="italic font-normal">THE ART OF ILLUMINATION.</span>
 </h1>
-</div>
-<div className="md:col-start-6 md:col-span-7 mt-[-100px] md:mt-0">
-<div className="aspect-[4/5] md:aspect-[16/10] overflow-hidden rounded-lg shadow-2xl">
-<img className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000" data-alt="A grand, architectural interior of a minimalist lighting design studio with soaring ceilings and soft natural light filtering through high windows. Large-scale geometric light installations hang suspended from the ceiling, casting soft, diffused glows across pristine white surfaces. The atmosphere is quiet, professional, and deeply inspiring, reflecting a high-end luxury aesthetic with a palette of warm ivories and cool teals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA733jUnItoZGYn6ItMsAiLYFRvg91DwHSxseuNHaKg0Zy5LBEsiE94IQ6D0JXdcppvEo8sOEDQgNtcBB5bBkMyJCREZIrgECALuA-Mj4tt-IfE9Uc4NfchIUy3TDq-9JqCBgXeWskUgQv57wmqnbpsgfqgVCSrn9hho7O_xbB2aqh2BB25BdP5m7nu2Q4SqiP27xdzMi3KRlVdxs7OhkbOVAZhA9oCTFdIdUgD81oQCvqksEh-He66yCurY6SLDWw18NCzARS7ZVg"/>
-</div>
-</div>
-<div className="hidden md:block absolute bottom-0 left-grid-margin">
-<div className="flex flex-col gap-4">
-<div className="w-px h-32 bg-outline-variant"></div>
-<span className="font-label-md text-label-md vertical-lr rotate-180 uppercase tracking-widest text-outline">Established 2024</span>
-</div>
+<div className="hidden md:flex flex-col gap-4 items-center mt-12">
+<div className="w-px h-32 bg-white/50"></div>
+<span className="font-label-md text-label-md uppercase tracking-widest text-white/80" style={{ writingMode: 'vertical-lr', transform: 'rotate(180deg)' }}>Established 2024</span>
 </div>
 </div>
 </section>

@@ -33,8 +33,7 @@ export default function Navbar() {
     }
   }, [isMobileMenuOpen]);
 
-  const isLightHero = pathname === "/about";
-  const useDarkElements = scrolled || isLightHero;
+  const useDarkElements = scrolled;
 
   const navLinks = [
     { name: "Home", href: "/" },

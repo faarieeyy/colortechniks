@@ -40,10 +40,9 @@ export default function Page() {
 {/*  Hero Section  */}
 <header className="relative h-screen flex items-center overflow-hidden">
 <div className="absolute inset-0 z-0">
-<img alt="Architectural background" className="w-full h-full object-cover" data-alt="A wide-angle, low-perspective shot of a breathtaking modern architectural lobby featuring soaring glass ceilings and structural steel beams. Soft natural light pours through the windows, casting long, elegant shadows across a polished stone floor. The atmosphere is quiet, professional, and sophisticated, reflecting a high-end editorial aesthetic with a palette of warm ivories, deep teals, and sharp geometric precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZBa6zGXdolgOx8WaE9wLpa0gnQ9zR7SFLdkAEm0-fDkltHeE6O43httlRHv79rTi1yjDyaUiQX8WNF7mEWzLN4WsvgVETEAGZ7ghwBEcmSkM-su0lKc0vBKF4XS4khKkRqz3fFmvoG6YXhwfJyq-6Jmrj28LZlzNENplGqRiPU7uWGZDkItv28hgyF0YuM-O_H2xQKIMAQTpH3OYY3GcKIK9hTEecJw3BrG1Ss73tAhi8yzKEbUoxWjkL_UsjY1Q_2KnVJp_xjuI"/>
-<div className="absolute inset-0 bg-primary/20 backdrop-brightness-75"></div>
+<img alt="Contact Hero Background" className="w-full h-full object-cover parallax-bg" src="/contact-hero-bg.jpg" fetchPriority="high" decoding="async" />
 </div>
-<div className="relative z-10 px-grid-margin max-w-[1440px] mx-auto w-full">
+<div className="relative z-10 px-grid-margin max-w-[1440px] mx-auto w-full" style={{ textShadow: "0 0 40px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.8)" }}>
 <div className="max-w-4xl">
 <span className="font-label-md text-label-md text-surface-container-lowest tracking-[0.3em] uppercase mb-6 block opacity-80">Architecture &amp; Light</span>
 <h1 className="font-display-lg text-display-lg text-surface-container-lowest leading-none mb-12">

@@ -48,12 +48,12 @@ export default function Page() {
 {/*  Hero Section  */}
 <section className="relative h-[921px] flex items-center justify-center overflow-hidden pt-24">
 <div className="absolute inset-0 z-0">
-<img className="w-full h-full object-cover brightness-75" data-alt="A wide-angle cinematic shot of a modern architectural masterpiece at dusk. The building features large glass panels reflecting a deep orange and purple sunset. Dramatic upward lighting emphasizes the sharp angles and material textures of concrete and steel. The atmosphere is sophisticated and quiet, embodying a premium light-mode aesthetic with high contrast and sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZkDpAk8e6BFGd7zw24k8NcweTNKaBVbCaG3TBUn-xt5H54JatRxvU_k1d4NNqx7qHy3WCT2VpXuwtzWFODawadPl3R5eZAKvJtHtptObJmYjbHe-pT-xjKIl3tW7QlZ3gOVesVNoriIt7i_vVgHfuj1PXbAVa56FYtfUeTEb5_1Md6JRw1c5UuROYBWItW_-AkwAD31v47GC7W2QDWMzk1bAlwHYQxx3mCUtNJuAEKD1XzVvPxolNXDPr4Qpue2XWZYJcrumsreo"/>
+<img className="w-full h-full object-cover parallax-bg" alt="Projects Hero Background" src="/projects-hero-bg.jpg" fetchPriority="high" decoding="async" />
 </div>
-<div className="relative z-10 px-grid-margin text-center max-w-5xl">
+<div className="relative z-10 px-grid-margin text-center max-w-5xl" style={{ textShadow: "0 0 40px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.8)" }}>
 <span className="inline-block font-label-md text-label-md text-secondary-fixed mb-6 tracking-widest uppercase reveal-up">Curated Portfolio</span>
-<h1 className="font-display-lg text-display-lg text-surface-container-lowest leading-none tracking-tight reveal-up">PROJECTS THAT <br/><span className="italic font-light">TRANSFORM</span> SPACES.</h1>
-<p className="mt-8 font-body-lg text-body-lg text-surface-variant max-w-2xl mx-auto reveal-up">Where architectural luminescence meets structural precision. Explore our latest global achievements in high-end design.</p>
+<h1 className="font-display-lg text-display-lg text-surface-container-lowest leading-none tracking-tight reveal-up text-white">PROJECTS THAT <br/><span className="italic font-light">TRANSFORM</span> SPACES.</h1>
+<p className="mt-8 font-body-lg text-body-lg text-surface-variant max-w-2xl mx-auto reveal-up text-white">Where architectural luminescence meets structural precision. Explore our latest global achievements in high-end design.</p>
 </div>
 </section>
 {/*  Filter Bar  */}

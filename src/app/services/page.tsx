@@ -39,14 +39,14 @@ export default function Page() {
 {/*  Top Navigation  */}
 
 {/*  Hero Section  */}
-<header className="relative h-[921px] flex items-end overflow-hidden">
+<header className="relative h-[921px] flex items-center overflow-hidden">
 <div className="absolute inset-0">
-<img alt="Hospitality Lighting" className="w-full h-full object-cover scale-105" data-alt="A grand, high-ceilinged hotel lobby featuring an intricate architectural lighting design. The scene is bathed in warm, luminous glows from recessed ceiling fixtures and sculptural floor lamps. The style is ultra-modern and luxurious, emphasizing deep teal shadows and bright ivory highlights. Large glass windows reveal a dusk sky, creating a cinematic and sophisticated atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVk-artH-vJptIQmjuMkOwhBwVQKvvPjkKtMAPS-MnPiwBgHsRGywrIP1wqw5p7_IV9r-hGrWvSvyapTFaOmn-0aGOFs3BeE0mffZze0HbDUDgbfKr8V-3b_DPDM3WgNbzLhmBx2_bfAxZsWRSQKXlmQJ5ondheWm_4Qn5Jibb6vpP9Ao2EOjfukqIrvF_LC-biIZicARbzy6gInyZpA1jeq7chYkUOx_O2Pk5VOwcKNKiBFuCBKo7aTEL3vX4ufE4lrp_91gPRDM"/>
-<div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent"></div>
+<img alt="Services Hero Background" className="w-full h-full object-cover parallax-bg" src="/services-hero-bg.jpg" fetchPriority="high" decoding="async" />
 </div>
-<div className="relative w-full max-w-[1440px] mx-auto px-grid-margin pb-24 z-10">
-<h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-surface leading-tight max-w-4xl editorial-reveal" id="hero-title">
-                LIGHTING SOLUTIONS FOR EVERY ENVIRONMENT.
+<div className="relative w-full max-w-[1440px] mx-auto px-grid-margin z-10">
+<h1 className="text-white leading-tight max-w-4xl editorial-reveal" id="hero-title" style={{ textShadow: "0 0 40px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.8)" }}>
+                <span className="block font-display-lg text-display-lg-mobile md:text-display-lg mb-4">LIGHTING SOLUTIONS</span>
+                <span className="block font-headline-md text-headline-md font-normal italic opacity-90">FOR EVERY ENVIRONMENT.</span>
             </h1>
 </div>
 </header>
