@@ -44,8 +44,8 @@ export default function Page() {
 
       {/*  Hero Section  */}
       <header className="relative h-[921px] flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img alt="Services Hero Background" className="w-full h-full object-cover parallax-bg" src="/services-hero-new-bg.webp" fetchPriority="high" decoding="async" />
+        <div className="absolute inset-0 bg-black">
+          <img alt="Services Hero Background" className="w-full h-full object-cover parallax-bg" src="/services-hero-new-bg.webp" fetchPriority="high" decoding="sync" />
         </div>
         <div className="relative w-full max-w-[1440px] mx-auto px-grid-margin z-10 -mt-24 md:-mt-32">
           <h1 className="text-white leading-tight max-w-4xl mx-auto text-center editorial-reveal" id="hero-title" style={{ textShadow: "0 0 40px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.8)" }}>

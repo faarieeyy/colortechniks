@@ -44,7 +44,7 @@ export default function Page() {
 {/*  Section 1: Hero  */}
 <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black">
 <div className="absolute inset-0 z-0">
-<img className="w-full h-full object-cover parallax-bg" alt="About Hero Background" src="/about-hero-new.webp" fetchPriority="high" decoding="async" />
+<img className="w-full h-full object-cover parallax-bg" alt="About Hero Background" src="/about-hero-new.webp" fetchPriority="high" decoding="sync" />
 </div>
 <div className="relative z-10 text-center px-grid-margin max-w-7xl pt-32">
 <h1 

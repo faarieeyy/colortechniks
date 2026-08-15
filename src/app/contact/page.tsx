@@ -39,8 +39,8 @@ export default function Page() {
 
 {/*  Hero Section  */}
 <header className="relative h-screen flex items-end pb-12 overflow-hidden">
-<div className="absolute inset-0 z-0">
-<img alt="Contact Hero Background" className="w-full h-full object-cover parallax-bg" src="/contact-hero-new-paintings.webp" fetchPriority="high" decoding="async" />
+<div className="absolute inset-0 z-0 bg-black">
+<img alt="Contact Hero Background" className="w-full h-full object-cover parallax-bg" src="/contact-hero-new-paintings.webp" fetchPriority="high" decoding="sync" />
 </div>
 <div className="relative z-10 px-grid-margin max-w-[1440px] mx-auto w-full" style={{ textShadow: "0 0 40px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.8)" }}>
 <div className="max-w-4xl">

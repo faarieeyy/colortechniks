@@ -84,9 +84,9 @@ export default function Page() {
 
       <main>
         {/*  Hero Section  */}
-        <section className="relative h-[921px] flex items-center justify-center overflow-hidden pt-24">
+        <section className="relative h-[921px] flex items-center justify-center overflow-hidden pt-24 bg-black">
           <div className="absolute inset-0 z-0">
-            <img className="w-full h-full object-cover parallax-bg" alt="Projects Hero Background" src="/projects-hero-bg.webp" fetchPriority="high" decoding="async" />
+            <img className="w-full h-full object-cover parallax-bg" alt="Projects Hero Background" src="/projects-hero-bg.webp" fetchPriority="high" decoding="sync" />
           </div>
           <div className="relative z-10 px-grid-margin text-center max-w-5xl" style={{ textShadow: "0 0 40px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.8)" }}>
             <span className="inline-block font-label-md text-label-md text-secondary-fixed mb-6 tracking-widest uppercase reveal-up">Curated Portfolio</span>

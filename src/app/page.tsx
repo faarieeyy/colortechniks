@@ -65,7 +65,7 @@ export default function Page() {
 <div className="relative z-10 bg-black">
   {/* The Sticky Background Image */}
   <div className="sticky top-0 h-screen w-full overflow-hidden">
-    <img className="w-full h-full object-cover" alt="Hero Background" src="/home-lighting-diagram.webp" fetchPriority="high" decoding="async" />
+    <img className="w-full h-full object-cover" alt="Hero Background" src="/home-lighting-diagram.webp" fetchPriority="high" decoding="sync" />
     <div className="absolute inset-0 bg-black/20"></div>
   </div>
 
