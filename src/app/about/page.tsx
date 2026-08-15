@@ -48,7 +48,7 @@ export default function Page() {
 </div>
 <div className="relative z-10 text-center px-grid-margin max-w-7xl pt-32">
 <h1 
-  className="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight text-white mb-12 hero-reveal"
+  className="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight text-white mb-12 reveal"
   style={{ textShadow: "0 0 40px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.7)" }}
 >
                         THE SCIENCE OF LIGHT.<br/>
